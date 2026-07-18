@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #101210;
+  --ink-2: #161815;
+  --paper: #e9e9e6;
+  --paper-2: #ffffff;
+  --text: #f4f5f2;
+  --text-ink: #101210;
+  --muted: rgba(244, 245, 242, 0.55);
+  --muted-ink: rgba(16, 18, 16, 0.6);
+  --dim: #8f938c;
+  --volt: #c8f04b;
+  --hairline: rgba(255, 255, 255, 0.14);
+  --hairline-ink: rgba(16, 18, 16, 0.16);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-paper: var(--paper);
+  --color-volt: var(--volt);
+  --color-dim: var(--dim);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+html {
+  background: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Blueprint grid backdrop (dark) */
+.grid-ink {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Blueprint grid backdrop (paper) */
+.grid-paper {
+  background-image:
+    linear-gradient(to right, rgba(16, 18, 16, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 18, 16, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Mono system text */
+.sys {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Bracket CTA */
+.bracket {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+.bracket-primary {
+  color: var(--volt);
+}
+.bracket-primary:hover {
+  background: var(--volt);
+  color: var(--ink);
+}
+.bracket-ghost {
+  color: var(--text);
+}
+.bracket-ghost:hover {
+  border-color: var(--hairline);
+  color: var(--volt);
+}
+.bracket-on-paper {
+  color: var(--text-ink);
+}
+.bracket-on-paper:hover {
+  background: var(--text-ink);
+  color: var(--paper);
+}
+
+/* Section label: volt square + mono */
+.sec-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+}
+.sec-label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: var(--volt);
+  flex: none;
+}
+
+/* Hairline utilities */
+.hair-t {
+  border-top: 1px solid var(--hairline);
+}
+.hair-b {
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* Reveal (IO fallback, reduced-motion safe) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Screenshot frame */
+.shot-frame {
+  border: 1px solid var(--hairline);
+  background: var(--ink-2);
+  overflow: hidden;
+}
+.shot-frame-paper {
+  border: 1px solid var(--hairline-ink);
+  background: #fff;
+  overflow: hidden;
+}
+
+::selection {
+  background: rgba(200, 240, 75, 0.35);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
